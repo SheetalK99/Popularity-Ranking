@@ -1,17 +1,13 @@
 
 # coding: utf-8
 
-# In[1]:
 
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
-
-
-# In[2]:
-
 import re
  
+ # filter out emoticons
 emoticons_str = r"""
     (?:
         [:=;] # Eyes
@@ -35,6 +31,7 @@ regex_str = [
 tokens_re = re.compile(r'('+'|'.join(regex_str)+')', re.VERBOSE | re.IGNORECASE)
 emoticon_re = re.compile(r'^'+emoticons_str+'$', re.VERBOSE | re.IGNORECASE)
  
+ 
 def tokenize(s):
     return tokens_re.findall(s)
  
@@ -44,19 +41,6 @@ def preprocess(s, lowercase=False):
         tokens = [token if emoticon_re.search(token) else token.lower() for token in tokens]
         
     return tokens
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[3]:
 
 tweets_data_path = 'source.json'
 
@@ -74,18 +58,7 @@ for line in tweets_file:
     except:
         continue
 
-
-# In[4]:
-
 print len(tweets_data)
-
-
-# In[ ]:
-
-
-
-
-# In[5]:
 
 def populate_tweet_df(tweets_data):
     tweets = pd.DataFrame()
@@ -108,12 +81,8 @@ def populate_tweet_df(tweets_data):
     return tweets
 
 
-# In[6]:
-
 tweets=populate_tweet_df(tweets_data)
 
-
-# In[10]:
 
 from nltk.corpus import stopwords
 import string
@@ -121,8 +90,6 @@ import string
 punctuation = list(string.punctuation)
 stop = stopwords.words('english') + punctuation + ['rt', 'via', 'RT','ud83d','u2026','u1000']
 
-
-# In[11]:
 
 import operator 
 import json
@@ -139,8 +106,6 @@ for line in tweets_file:
     # Print the first 5 most frequent words
 print(count_all.most_common(10))
 
-
-# In[14]:
 
 from collections import defaultdict
 # remember to include the other import from the previous post
@@ -164,8 +129,6 @@ for line in tweets_file:
                 com[w1][w2] += 1
 
 
-# In[13]:
-
 com_max = []
 # For each term, look for the most common co-occurrent terms
 for t1 in com:
@@ -177,22 +140,7 @@ terms_max = sorted(com_max, key=operator.itemgetter(1), reverse=True)
 print(terms_max[:5])
 
 
-# In[ ]:
-
-
-
-
-# In[15]:
-
 tweets=populate_tweet_df(tweets_data)
-
-
-# In[ ]:
-
-
-
-
-# In[16]:
 
 tweets_by_lang = tweets['lang'].value_counts()
 
@@ -205,8 +153,6 @@ ax.set_title('Top 5 languages', fontsize=15, fontweight='bold')
 tweets_by_lang[:5].plot(ax=ax, kind='bar', color='red')
 
 
-# In[17]:
-
 tweets_by_country = tweets['country'].value_counts()
 
 fig, ax = plt.subplots()
@@ -217,18 +163,9 @@ ax.set_ylabel('Number of tweets' , fontsize=15)
 ax.set_title('Top 10 countries', fontsize=15, fontweight='bold')
 tweets_by_country[:10].plot(ax=ax, kind='bar', color='blue')
 
-
-# In[18]:
-
 get_ipython().magic(u'pylab inline')
 
-
-# In[19]:
-
 import re
-
-
-# In[20]:
 
 def word_in_text(word, text):
    
@@ -249,26 +186,10 @@ def word_in_text(word, text):
 tweets['Roger'] = tweets['text'].apply(lambda tweet: word_in_text('roger|Federer|fed', tweet))
 tweets['Rafa'] = tweets['text'].apply(lambda tweet: word_in_text('nadal|rafa|rafael', tweet))
 
-
-
-
-# In[28]:
-
 print tweets['Rafa'].value_counts()
-
-
-# In[ ]:
-
-
-
-
-# In[29]:
 
 print tweets['Rafa'].value_counts()[True]
 print tweets['Roger'].value_counts()[True]
-
-
-# In[30]:
 
 prg_langs = ['Rafa', 'Roger']
 tweets_by_prg_lang = [tweets['Rafa'].value_counts()[True], tweets['Roger'].value_counts()[True]]
@@ -285,9 +206,6 @@ ax.set_xticks([p + 0.4 * width for p in x_pos])
 ax.set_xticklabels(prg_langs)
 plt.grid()
 
-
-# In[32]:
-
 def extract_link(text):
     regex = r'https?://[^\s<>"]+|www\.[^\s<>"]+'
     match = re.search(regex, text)
@@ -296,39 +214,15 @@ def extract_link(text):
     return ''
 
 
-# In[33]:
-
 tweets['link'] = tweets['text'].apply(lambda tweet: extract_link(tweet))
-
-
-# In[34]:
 
 
 tweets_relevant_with_link = tweets[tweets['link'] != '']
 
-
-# In[37]:
-
 print tweets_relevant_with_link[tweets_relevant_with_link['Roger'] == True]['link']
 print tweets_relevant_with_link[tweets_relevant_with_link['Rafa'] == True]['link']
 
-
-# In[39]:
-
 print tweets_relevant_with_link[tweets_relevant_with_link['Roger'] == True]['link']
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[41]:
 
 temp1 = tweets['Roger'].value_counts()
 import matplotlib.pyplot as plt
@@ -341,17 +235,7 @@ temp1.plot(kind='bar')
 
 
 
-# In[42]:
-
 tweets.apply(lambda x: sum(x.isnull()),axis=0) 
-
-
-# In[ ]:
-
-
-
-
-# In[43]:
 
 from mpl_toolkits.basemap import Basemap
  
@@ -376,9 +260,6 @@ my_map.plot(x, y, 'ro', markersize=6, alpha=0.5)
  
 
 
-# In[15]:
-
-
 import vincent
 
 word_freq = count_terms_only.most_common(20)
@@ -388,12 +269,8 @@ bar = vincent.Bar(data, iter_idx='x')
 bar.to_json('term_freq.json')
 
 
-# In[16]:
-
 bar.to_json('term_freq.json', html_out=True, html_path='chart.html')
 
-
-# In[ ]:
 
 
 

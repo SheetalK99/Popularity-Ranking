@@ -4,10 +4,10 @@ Model to compares popularity tennis players Roger Federer and Rafael Nadal by an
 
 ## Get Started
 
-*Create Twitter application (https://www.digitalocean.com/community/tutorials/how-to-create-a-twitter-app). This will give the consumer key and consumer secret that are needed for generating Access Token and Access Token Secret. These help in authenticating the client application to Twitter.
-2.Install Tweepy to gather Twitter feed. (http://docs.tweepy.org/en/v3.4.0/install.html)
-3.Install Libraries needed for analysis and visualisation: Pandas, Basemap, vincent, matplotlib, GeoJSON, Leaflet
-4.The files in the repository can now be used normally
+* Create Twitter application (https://www.digitalocean.com/community/tutorials/how-to-create-a-twitter-app). This will give the consumer key and consumer secret that are needed for generating Access Token and Access Token Secret. These help in authenticating the client application to Twitter.
+* Install Tweepy to gather Twitter feed. (http://docs.tweepy.org/en/v3.4.0/install.html)
+* Install Libraries needed for analysis and visualisation: Pandas, Basemap, vincent, matplotlib, GeoJSON, Leaflet
+* The files in the repository can now be used normally
 
 ## Workflow
 

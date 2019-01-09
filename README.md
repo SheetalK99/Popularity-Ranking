@@ -1,4 +1,4 @@
-# TwitterTennisRanking
+# Popularity Ranking by mining twitter feed
 
 Model to compares popularity tennis players Roger Federer and Rafael Nadal by analyzing the sentiments from live tweets. 
 

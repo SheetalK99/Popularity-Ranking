@@ -11,9 +11,9 @@ Model to compares popularity tennis players Roger Federer and Rafael Nadal by an
 
 ## Workflow
 
-Step 1 : Getting data from Twitter 
-Step 2 : Understanding the data by creating simple visualisations like charts
-Step 3:  Cleaning the tweets. For example, removing emoticons
-Step 4 : Analyze the tweets to compute popularity
-Step 5 : Create visualisation across different segments like geographic locations
+* Step 1 : Getting data from Twitter 
+* Step 2 : Understanding the data by creating simple visualisations like charts
+* Step 3:  Cleaning the tweets. For example, removing emoticons
+* Step 4 : Analyze the tweets to compute popularity
+* Step 5 : Create visualisation across different segments like geographic locations
 

@@ -1,4 +1,10 @@
 # TwitterTennisRanking
-This is a model to get popularity of entities. I have collected data from live Twitter feeds as a dataset. 
-Used Tweepy for getting the feeds. Analysis is done using Pandas.
-Basemap, vincent, matplotlib, GeoJSON and Leaflet
+
+Model to compares popularity tennis players Roger Federer and Rafael Nadal by analyzing the sentiments from live tweets. 
+
+## Get Started
+
+Install Tweepy to gather Twitter feed.
+Libraries needed in Python: Pandas, Basemap, vincent, matplotlib, GeoJSON, Leaflet
+
+

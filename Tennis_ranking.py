@@ -6,6 +6,12 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 import re
+import operator 
+import json
+from collections import Counter
+from nltk.corpus import stopwords
+import string
+ import vincent
  
  # filter out emoticons
 emoticons_str = r"""
@@ -84,16 +90,12 @@ def populate_tweet_df(tweets_data):
 tweets=populate_tweet_df(tweets_data)
 
 
-from nltk.corpus import stopwords
-import string
  
 punctuation = list(string.punctuation)
 stop = stopwords.words('english') + punctuation + ['rt', 'via', 'RT','ud83d','u2026','u1000']
 
 
-import operator 
-import json
-from collections import Counter
+
 
 tweets_file = open(tweets_data_path, "r")
 count_all = Counter()
@@ -260,7 +262,7 @@ my_map.plot(x, y, 'ro', markersize=6, alpha=0.5)
  
 
 
-import vincent
+
 
 word_freq = count_terms_only.most_common(20)
 labels, freq = zip(*word_freq)
